@@ -12,6 +12,9 @@ class HomeScreen < PM::TableScreen
     @results = []
     category = 'Chinese'
     location = 'Boston'
+    # category = @search[:category]
+    # location = @search[:location]
+
     create_data(category, location)
   end
 

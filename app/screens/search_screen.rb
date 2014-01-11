@@ -1,10 +1,6 @@
 class SearchScreen < PM::FormotionScreen
   title "Search Yelp"
 
-  def on_load
-    set_nav_bar_button :right, title: "Results", action: :go_to_results
-  end
-
   def table_data
     {
       sections: [{
@@ -36,8 +32,13 @@ class SearchScreen < PM::FormotionScreen
     }
   end
 
-  def go_to_results
+  def on_submit(_form)
+    data = _form.render
+    @search = NSUserDefaults.standardUserDefaults
+    @search["category"] = data[:category]
+    @search["location"] = data[:location]
+    p @search["category"]
+    p @search["location"]
     open HomeScreen.new(navbar: true)
   end
-
 end
