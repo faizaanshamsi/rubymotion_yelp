@@ -16,7 +16,7 @@ class SearchScreen < PM::FormotionScreen
           input_accessory: :done
         },
         {
-          title: "Where",
+          title: "Where?",
           key: :location,
           type: :string,
           placeholder: 'Boston',

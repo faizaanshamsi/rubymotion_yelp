@@ -26,8 +26,8 @@ class HomeScreen < PM::TableScreen
       result_data = BW::JSON.parse(response.body)
       result_data["businesses"].map do |business|
         @results << { title: business["name"], url: business["mobile_url"], action: :open_link }
-        update_table_data
       end
+      update_table_data
     end
   end
 end
