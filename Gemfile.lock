@@ -32,6 +32,9 @@ GEM
     cocoapods-try-release-fix (0.1.1)
     colored (1.2)
     escape (0.0.4)
+    formotion (1.6)
+      bubble-wrap (~> 1.4.0)
+      motion-require (~> 0.0.3)
     fuzzy_match (2.0.4)
     i18n (0.6.9)
     json_pure (1.8.1)
@@ -56,4 +59,5 @@ DEPENDENCIES
   ProMotion (~> 1.1.1)
   afmotion (~> 2.0.0)
   bubble-wrap
+  formotion
   rake
