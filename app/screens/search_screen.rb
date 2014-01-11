@@ -34,11 +34,10 @@ class SearchScreen < PM::FormotionScreen
 
   def on_submit(_form)
     data = _form.render
-    @search = NSUserDefaults.standardUserDefaults
-    @search["category"] = data[:category]
-    @search["location"] = data[:location]
-    p @search["category"]
-    p @search["location"]
+
+    NSUserDefaults['category'] = data[:category]
+    NSUserDefaults['location'] = data[:location]
+
     open HomeScreen.new(navbar: true)
   end
 end

@@ -6,5 +6,5 @@ gem "afmotion", "~> 2.0.0"
 # gem "teacup" # advanced styling
 gem "bubble-wrap" # lots of goodies
 gem "formotion"
-# gem "sugarcube" # monkeypatch all the things
+gem 'sugarcube', :require => 'sugarcube-all'
 # gem "rmq" # jQuery for RubyMotion

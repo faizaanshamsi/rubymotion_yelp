@@ -10,10 +10,9 @@ class HomeScreen < PM::TableScreen
 
   def on_load
     @results = []
-    category = 'Chinese'
-    location = 'Boston'
-    # category = @search[:category]
-    # location = @search[:location]
+
+    category = NSUserDefaults['category']
+    location = NSUserDefaults['location']
 
     create_data(category, location)
   end
