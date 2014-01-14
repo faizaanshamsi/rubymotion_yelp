@@ -9,7 +9,9 @@ class HomeScreen < PM::TableScreen
   end
 
   def on_load
-    @results = []
+    @results ||= [{
+      title: "Loading...",
+    }]
 
     category = NSUserDefaults['category']
     location = NSUserDefaults['location']
