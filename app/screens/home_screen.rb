@@ -14,10 +14,6 @@ class HomeScreen < PM::TableScreen
     }]
   end
 
-    category = NSUserDefaults['category']
-    location = NSUserDefaults['location']
-
-    create_data(category, location)
   def on_appear
     search_yelp
   end
@@ -26,13 +22,22 @@ class HomeScreen < PM::TableScreen
     args[:cell][:url].nsurl.open
   end
 
-    BW::HTTP.get("http://api.yelp.com/business_review_search?ywsid=Smbd1bKAld_JSiOJ_naB0A&term=#{category}&location=#{location}") do |response|
-      result_data = BW::JSON.parse(response.body)
-      result_data["businesses"].map do |business|
-        @results << { title: business["name"], url: business["mobile_url"], action: :open_link }
   def search_yelp
+    YelpAPI.search(NSUserDefaults['category'], NSUserDefaults['location']) do |result_data, error|
+      if error.nil?
+        @results = result_data["businesses"].map do |business|
+          {
+            title: business["name"],
+            url: business["mobile_url"],
+            action: :open_link
+          }
+        end
+        update_table_data
+
+      else
+        NSLog "Error retrieving data from the #{App.name} server."
       end
-      update_table_data
     end
+
   end
 end
