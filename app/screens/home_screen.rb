@@ -1,6 +1,7 @@
 class HomeScreen < PM::TableScreen
   title "Yelp Search"
   searchable placeholder: "Filter Results"
+  refreshable
 
   attr_accessor :category, :location
 
@@ -24,7 +25,12 @@ class HomeScreen < PM::TableScreen
     args[:cell][:url].nsurl.open
   end
 
+  def on_refresh
+    search_yelp
+  end
+
   def search_yelp
+    start_refreshing
     YelpAPI.search(self.category, self.location) do |result_data, error|
       if error.nil?
         @results = result_data["businesses"].map do |business|
@@ -34,6 +40,7 @@ class HomeScreen < PM::TableScreen
             action: :open_link
           }
         end
+        end_refreshing
         update_table_data
 
       else
