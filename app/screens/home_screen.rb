@@ -2,6 +2,8 @@ class HomeScreen < PM::TableScreen
   title "Yelp Search"
   searchable placeholder: "Filter Results"
 
+  attr_accessor :category, :location
+
   def table_data
     [{
       cells: Array(@results)
@@ -23,7 +25,7 @@ class HomeScreen < PM::TableScreen
   end
 
   def search_yelp
-    YelpAPI.search(NSUserDefaults['category'], NSUserDefaults['location']) do |result_data, error|
+    YelpAPI.search(self.category, self.location) do |result_data, error|
       if error.nil?
         @results = result_data["businesses"].map do |business|
           {
