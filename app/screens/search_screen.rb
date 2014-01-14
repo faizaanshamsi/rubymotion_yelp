@@ -38,6 +38,6 @@ class SearchScreen < PM::FormotionScreen
     NSUserDefaults['category'] = data[:category]
     NSUserDefaults['location'] = data[:location]
 
-    open HomeScreen.new(navbar: true)
+    open HomeScreen.new
   end
 end
